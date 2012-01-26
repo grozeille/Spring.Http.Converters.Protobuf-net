@@ -1,8 +1,4 @@
-
+bin
+obj
 *.suo
-/src/Spring.Http.Converters.Protobuf-net/bin
-/src/Spring.Http.Converters.Protobuf-net/obj
-/test/Spring.Http.Converters.Protobuf-net.Tests/bin
-/test/Spring.Http.Converters.Protobuf-net.Tests/obj
-/examples/Spring.RestQuickStart/src/Spring.RestQuickStart/obj
-/examples/Spring.RestQuickStart/src/Spring.RestQuickStart/bin
+*.csproj.user

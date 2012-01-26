@@ -20,26 +20,18 @@
 
 using System;
 using System.IO;
-using System.Text;
-using System.Collections.Generic;
-
-using Spring.Http;
-using Spring.Http.Converters;
-using System.Reflection;
-using System.Linq.Expressions;
 using System.Linq;
-using ProtoBuf;
-using System.Runtime.Serialization;
 using System.Collections;
+using System.Runtime.Serialization;
 
-namespace Spring.Http.Converters.ProtoBufNet
+using ProtoBuf;
+
+namespace Spring.Http.Converters.ProtobufNet
 {
     /// <summary>
-    /// Implementation of <see cref="IHttpMessageConverter"/> that can read and write Protobuf 
+    /// Implementation of <see cref="IHttpMessageConverter"/> that can read and write Google Protocol Buffers format 
     /// using the Protobuf-net library.
     /// </summary>
-    /// <remarks>
-    /// </remarks>
     /// <author>Mathias Kluba</author>
     public class ProtobufNetHttpMessageConverter : AbstractHttpMessageConverter
     {
@@ -50,7 +42,7 @@ namespace Spring.Http.Converters.ProtoBufNet
         /// with the media type 'application/x-protobuf'.
         /// </summary>
         public ProtobufNetHttpMessageConverter() :
-            base(PROTO_MEDIATYPE, new MediaType("application", "octet-stream"))
+            base(PROTO_MEDIATYPE)
         {
         }
 
