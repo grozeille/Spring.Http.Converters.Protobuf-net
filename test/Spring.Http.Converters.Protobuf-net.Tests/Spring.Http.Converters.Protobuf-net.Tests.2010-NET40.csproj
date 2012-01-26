@@ -8,7 +8,7 @@
     <ProjectGuid>{147405D9-F04E-4C76-9BB2-B0CBB55F9D32}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spring.Http.Converters.ProtoBuf.Tests</RootNamespace>
+    <RootNamespace>Spring</RootNamespace>
     <AssemblyName>Spring.Http.Converters.Protobuf-net.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,6 +40,9 @@
     <Reference Include="Spring.Rest">
       <HintPath>..\..\lib\net\4.0\Spring.Rest.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Rest.Testing">
+      <HintPath>..\..\lib\net\4.0\Spring.Rest.Testing.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,7 +54,7 @@
   <ItemGroup>
     <Compile Include="StubHttpInputMessage.cs" />
     <Compile Include="StubHttpOutputMessage.cs" />
-    <Compile Include="Http\Converters\ProtoBufNet\ProtobufNetHttpMessageConverterTests.cs" />
+    <Compile Include="Http\Converters\ProtobufNet\ProtobufNetHttpMessageConverterTests.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Spring.Http.Converters.ProtoBuf.Tests
+namespace Spring.Http.Converters.ProtobufNet
 {
     public class StubHttpInputMessage : IHttpInputMessage
     {
