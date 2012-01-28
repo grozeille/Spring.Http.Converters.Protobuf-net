@@ -18,20 +18,42 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
+using System.Collections.Generic;
+
 using NUnit.Framework;
 using ProtoBuf;
-using System.IO;
-using Spring.Http.Converters.ProtoBuf.Tests;
 
-namespace Spring.Http.Converters.ProtoBufNet.Tests
+namespace Spring.Http.Converters.ProtobufNet
 {
     [TestFixture]
     public class ProtobufNetHttpMessageConverterTests
     {
+        private ProtobufNetHttpMessageConverter converter;
+
+        [SetUp]
+        public void SetUp()
+        {
+            converter = new ProtobufNetHttpMessageConverter();
+        }
+
+        [Test]
+        public void CanRead()
+        {
+            Assert.IsTrue(converter.CanRead(typeof(People), ProtobufNetHttpMessageConverter.PROTO_MEDIATYPE));
+            Assert.IsFalse(converter.CanRead(typeof(string), ProtobufNetHttpMessageConverter.PROTO_MEDIATYPE));
+            Assert.IsFalse(converter.CanRead(typeof(People), new MediaType("text", "plain")));
+        }
+
+        [Test]
+        public void CanWrite()
+        {
+            Assert.IsTrue(converter.CanWrite(typeof(People), ProtobufNetHttpMessageConverter.PROTO_MEDIATYPE));
+            Assert.IsFalse(converter.CanWrite(typeof(string), ProtobufNetHttpMessageConverter.PROTO_MEDIATYPE));
+            Assert.IsFalse(converter.CanWrite(typeof(People), new MediaType("text", "plain")));
+        }
+
         public void GenerateSerializedVersions()
         {
             People[] peoples = new People[] 
@@ -43,7 +65,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
 
             using(var fs = new FileStream("peopleList.data", FileMode.Create))
             {
-
                 foreach(var item in peoples)
                 {
                     Serializer.SerializeWithLengthPrefix(fs, item, PrefixStyle.Base128);
@@ -60,9 +81,7 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
 
         [Test]
         public void SerializeObject()
-        {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-            
+        {           
             var chuck = new People { Id = 1, Firstname = "chuck", Lastname = "norris" };
             
             var outputMessage = new StubHttpOutputMessage();
@@ -82,8 +101,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
         [Test]
         public void SerializeObjectList()
         {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-
             People[] peoples = new People[] 
             { 
                 new People{ Id= 1, Firstname = "chuck", Lastname ="norris"},
@@ -108,8 +125,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
         [Test]
         public void SerializeObjectArray()
         {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-
             People[] peoples = new People[] 
             { 
                 new People{ Id= 1, Firstname = "chuck", Lastname ="norris"},
@@ -134,8 +149,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
         [Test]
         public void DeserializeObject()
         {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-
             var chuck = new People { Id = 1, Firstname = "chuck", Lastname = "norris" };
 
             var inputMessage = new StubHttpInputMessage();
@@ -151,8 +164,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
         [Test]
         public void DeserializeObjectList()
         {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-
             People[] peoples = new People[] 
             { 
                 new People{ Id= 1, Firstname = "chuck", Lastname ="norris"},
@@ -172,8 +183,6 @@ namespace Spring.Http.Converters.ProtoBufNet.Tests
         [Test]
         public void DeserializeObjectArray()
         {
-            ProtobufNetHttpMessageConverter converter = new ProtobufNetHttpMessageConverter();
-
             People[] peoples = new People[] 
             { 
                 new People{ Id= 1, Firstname = "chuck", Lastname ="norris"},

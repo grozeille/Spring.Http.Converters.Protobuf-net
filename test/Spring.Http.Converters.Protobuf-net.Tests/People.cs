@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using ProtoBuf;
 
-namespace Spring.Http.Converters.ProtoBuf.Tests
+namespace Spring.Http.Converters.ProtobufNet
 {
     [ProtoContract]
     public class People
